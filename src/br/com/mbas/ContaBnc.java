@@ -104,10 +104,14 @@ public class ContaBnc implements Controlador{
 		@Override
 		public void sacar(Double valor) {
 			if(this.getContaAtiva()) {
-				this.setSaldoConta(this.getSaldoConta()-valor);
-				System.out.println("Saque realizado com sucesso!");
+				if(this.getSaldoConta()>=valor) {
+					this.setSaldoConta(this.getSaldoConta()-valor);
+					System.out.println("Saque realizado com sucesso!");
+				} else {
+					System.err.println("Saldo insuficiente!");
+				}
 			} else {
-				System.err.println("Conta inativa!");
+				System.err.println("Conta inátiva!");
 			}
 		}
 
